@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script data-ad-client="ca-pub-4102796115065219" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <title>写真の輪郭抽出 - CreativeEdgeDetector（ ベータ版 ）</title>
+    <style>
+        label>input {
+            display: none;
+            /* アップロードボタンのスタイルを無効にする */
+        }
+        
+        label {
+            color: #FFFFFF;
+            /* ラベルテキストの色を指定する */
+            background-color: #006DD9;
+            /* ラベルの背景色を指定する */
+            padding: 10px;
+            /* ラベルとテキスト間の余白を指定する */
+            border: double 4px #AAAAAA;
+            /* ラベルのボーダーを指定する */
+        }
+    </style>
+</head>
+
+</head>
+
+<body>
+    <div class="container">
+        <br />
+        <br />
+        <h1>写真の輪郭抽出 - CreativeEdgeDetector（ ベータ版 ）</h1>
+        <h2>塗り絵、色鉛筆、絵の具、クレヨンなどのお絵かきに最適です。</h2>
+        <br /> 変換したい写真ファイルを選択して、「写真ファイルの輪郭抽出」ボタンを押してください。
+        <br /> サーバーにアップロードされた一時的な画像ファイルは速やかに削除されます。
+        <br /> 画面下部の利用規約に同意した上ご利用ください。
+        <br />
+        <br />
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label for="file_upload">写真画像を選択する
+          <input type="file" name="file" accept="image/*" required="" id="id_file"
+            onchange="$('#fake_text_box').val($(this).val().split('\\').getLastVal())">
+          <input type="text" id="file_upload" value="ファイル選択" onClick="$('#id_file').click();">
+        </label>
+            </div>
+            <div>
+                <input type="text" id="fake_text_box" value="" size="35" readonly onClick="$('#id_file').click();">
+            </div>
+            <br /><button class="btn btn-success" type="submit">
+        写真ファイルの輪郭抽出（ダウンロード）
+      </button>
+            <br />
+            <p>
+                <strong>※
+          ボタンをクリックすると、選択した写真が線画に変換され、<br>画像ファイルのダウンロードが始まります。<br>
+          変換にしばらく時間がかかりますが、<br>サーバー負荷軽減のためお待ちいただけますようお願いします。</strong>
+            </p>
+        </form>
+        <br />
+        <hr />
+        <br />
+        <div style="font-size: 11px">
+            ■ 利用規約<br />1. 本サイトを使用することにより、お客様は本利用規約に同意されたものとみなします。同意されない場合は、本サイトを使用することはできません。
+            <br /> 2. 写真、イラスト、映像、音楽素材、テキスト等の素材は当該素材の権利者に帰属するものであり、著作権法を含む知的財産権に関する法の下、保護されています。適切な許諾を取得することなく、これらを無断で使用することは、法律の下、禁じられています。
+            <br /> 3. サイト上のコンテンツについて細心の注意を払っていますが、御利用につき、何らかのトラブルや損失・損害等につきましては一切責任を問わないものとします。
+            <br />4. 禁止事項： 本サイトを利用する際には、以下のような画像は使用をご遠慮願います。<br /> 　・権利を有する第三者から、利用の許諾を受けていない画像 <br /> 　・法令に違反し、または性的・暴力的・グロテスクなど公序良俗に反する画像
+            <br /> 　・一般に本サイトを閲覧した第三者が不快と感じる画像 <br /> 　・その他本サイトが不適切と判断する画像
+            <br />
+            <br /><br />Copyright © 2020 <a target="_blank" href='https://oneprog.work'>misc</a> All Rights Reserved.
+        </div>
+    </div>
+    <script>
+        Array.prototype.getLastVal = function() {
+            return this[this.length - 1];
+        }
+    </script>
+</body>
+
+</html>
