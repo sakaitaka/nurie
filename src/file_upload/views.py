@@ -37,16 +37,21 @@ def download(request, fullpath):
     os.remove(fullpath)
     return response
 
-
 def file_upload(request):
+    sigma = 100
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
+            try:
+                sigma = request.POST['sigma']
+            except:
+                sigma = 100
             file_obj = request.FILES['file']
             file_obj.name = randomname(30)
             handle_uploaded_file(file_obj)
-            output = my_Canny('media/documents/' + file_obj.name,
-                              0., 0.05, 0.09, 2, file_obj.name)
+            output = my_Canny('media/documents/' + file_obj.name, 0.,
+             0.05, 0.09, 2, 
+             file_obj.name, 100)
             os.remove('media/documents/' + file_obj.name)
             return download(request, output)
     else:
