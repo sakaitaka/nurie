@@ -186,7 +186,7 @@ def my_linking(mag_thin, orient, tLow, tHigh):
 # Step 6
 
 
-def my_Canny(imgName, sigma, tLow, tHigh, r, output):
+def my_Canny(imgName, sigma, tLow, tHigh, r, output, sigma2):
     img = cv2.imread(imgName)
     orgHeight, orgWidth = img.shape[:2]
     if orgHeight > 1280 or orgWidth > 1280:
@@ -198,7 +198,7 @@ def my_Canny(imgName, sigma, tLow, tHigh, r, output):
     imgNorm = my_Normalize(img)
     # imgNorm = cv2.bitwise_and(imgNorm)
     # cv2.imshow('Normalized Grayscale', imgNorm)
-    Ix, Iy = my_DerivativesOfGaussian(imgNorm, 1)
+    Ix, Iy = my_DerivativesOfGaussian(imgNorm, sigma2)
     mag, orient = my_MagAndOrientation(Ix, Iy, tLow)
     mag_thin = my_NMS(mag, orient, tLow)
     kernel = np.ones((r, r), np.uint8)
