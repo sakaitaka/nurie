@@ -63,9 +63,9 @@
         写真ファイルの輪郭抽出（ダウンロード）
       </button>
       <br />
-      閾値(準備中)：<input id="sigma" type="text" data-slider-id="sigmaSlider" data-slider-min="0" data-slider-max="200" data-slider-step="1" data-slider-value="100" data-slider-tooltip="hide" />
+      閾値（パラメータ調整可能）：<input id="sigma" name="sigma" value="1" type="text" data-slider-id="sigmaSlider" data-slider-min="1" data-slider-max="6" data-slider-step="1" data-slider-value="1" data-slider-tooltip="hide" />
       <br>
-      <span id="sigma_display">1.00</span>
+      <span id="sigma_display">1</span>
         <div class="clearfix">
             <br />
             <p>
@@ -93,8 +93,8 @@
         }
         $(function() {
             $('#sigma').slider().on('slide', function(e) {
-                var sigma = e.value / 100.0;
-                $('#sigma_display').text(sigma);
+                $('#sigma_display').text(e.value);
+                $('#sigma').val(e.value);
             });
         });
     </script>
