@@ -24,8 +24,8 @@ def my_Normalize(img):
 # Step 2
 
 
-def my_DerivativesOfGaussian(img, sigma):
-
+def my_DerivativesOfGaussian(img, sigma, sigma_new):
+    sigma = sigma_new
     # sobel kernel
     Sx = [[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]]
     Sy = [[-1, -2, -1], [0, 0, 0], [1, 2, 1]]
@@ -187,6 +187,7 @@ def my_linking(mag_thin, orient, tLow, tHigh):
 
 
 def my_Canny(imgName, sigma, tLow, tHigh, r, output, sigma2):
+    sigma_new = int(sigma2)
     img = cv2.imread(imgName)
     orgHeight, orgWidth = img.shape[:2]
     if orgHeight > 1280 or orgWidth > 1280:
@@ -198,7 +199,7 @@ def my_Canny(imgName, sigma, tLow, tHigh, r, output, sigma2):
     imgNorm = my_Normalize(img)
     # imgNorm = cv2.bitwise_and(imgNorm)
     # cv2.imshow('Normalized Grayscale', imgNorm)
-    Ix, Iy = my_DerivativesOfGaussian(imgNorm, sigma2)
+    Ix, Iy = my_DerivativesOfGaussian(imgNorm, 1, sigma_new)
     mag, orient = my_MagAndOrientation(Ix, Iy, tLow)
     mag_thin = my_NMS(mag, orient, tLow)
     kernel = np.ones((r, r), np.uint8)
