@@ -1,8 +1,15 @@
+antiorm==1.2.1
 asgiref==3.2.3
+db==0.1.1
+db-sqlite3==0.0.1
 Django==3.0.4
+django-extensions==2.2.8
 freeze==1.0.10
 numpy==1.18.1
 opencv-python==4.2.0.32
+Pillow==7.0.0
+pysqlite3==0.4.2
 pytz==2019.3
+scipy==1.4.1
 six==1.14.0
 sqlparse==0.3.1
